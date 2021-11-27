@@ -9,20 +9,25 @@ source_file='/home/xufei/function/NoneMon.txt'
 file_directory='/home/xufei/function'
 file_dest='/home/xufei/function/tmp_test'
 
-`sed -i "s/'\r'/''/g" ${file_dest}`
-
-if [[ -d ${file_dest} ]]
-then
-	`mkdir -p ${file_dest}`
-fi
-
-while read line
-do
+#收集日志文件：$1记录散落文件列表，$2搜寻目录，$3收集后放置文件的目录
+function GatherListFiles(){
 	
-	for file_path in `find ${file_directory} -name ${line}`
-	do
-		`cp -r ${file_path} ${file_dest}`
-		echo "copy ${file_name} to ${file_dest}"
-	done
+	`sed -i "s/'\r'/''/g" ${1}`
 
-done < ${source_file}
+	if [[ -d ${3} ]]
+	then
+		`mkdir -p ${3}`
+	fi
+
+	while read line
+	do
+		for file_path in `find ${2} -name ${line}`
+		do
+			`cp -r ${file_path} ${3}`
+			echo "copy ${line} to ${3}"
+		done
+
+	done < ${1}
+}
+
+function ${source_file} ${file_directory} ${file_dest}
