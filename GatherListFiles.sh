@@ -5,7 +5,7 @@
 # 	date: 22:28 2011/11/27
 #-------------------------------------
 
-source_file='/home/xufei/function'
+source_file='/home/xufei/function/NoneMon.txt'
 file_directory='/home/xufei/function'
 file_dest='/home/xufei/function/tmp_test'
 
