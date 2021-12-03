@@ -7,6 +7,7 @@
 
 filepath='/home/xwx1110809/tools/TestWellCTC/ctc_function_060'
 DP='192.168.1.3'
+cmakepath='/'
 
 if [ ! -d ${filepath}]
 then
@@ -39,4 +40,5 @@ fi
 `python3 setup.py install`
 
 #修改makefile
-`sed`
+`sed -i 's/-WL/-lctchota &/' ${cmakepath}`
+`echo "Modify cmake successful"`
