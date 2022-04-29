@@ -1,0 +1,31 @@
+项目说明
+	测试用例需要从1951平台迁移到云化平台，涉及到的适配地方分别有2处
+	1. EM监听时间延长
+	2. PHM监控周期延长，对应的配置文件为new_gen.json文件，修改监控周期。
+
+phm文件类型汇总
+	new_gen.json
+	new_gen_sd.json
+	new_gen_1.json
+	new_gen_new.json
+
+代码结构：
+	//查找所有new_gen_x.json
+	all_configs = find all configs
+
+	//识别qemu, 1951平台文件
+	for single in all_configs:
+		if single is qemu:
+			configs.append(single)
+		elif single in 1951:
+			configs.append(single)
+
+	//文件集拷贝到ftpd目录下
+	for single in configs:
+		if system_type == qemu:
+			new_single_name = re.sub("qemu", single, '')
+		elif system_type == 1951:
+			new_single_name = re.sub("1951", single, '')
+		cmd = 'cp single /home/Solution_Test/Hubble/ftpd/ubuntu/new_single_name'
+		run_node_cmd(cmd)
+
